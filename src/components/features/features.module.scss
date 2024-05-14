@@ -1,0 +1,28 @@
+@use "/src/styles/breakpoints";
+@use "/src/styles/colors";
+@use "/src/styles/utils";
+
+.features {
+    @include utils.define-batch(
+        (
+            (--features-margin-block-start, 60, 120, 140),
+            (--features-margin-block-end, 140, 180, 214),
+            (--items-gap, 40, 16, 24)
+        )
+    );
+
+    @include utils.section-margin(var(--features-margin-block-start), var(--features-margin-block-end));
+
+    .items {
+        display: grid;
+        gap: var(--items-gap);
+    }
+}
+
+@media #{breakpoints.$tablet-and-desktop} {
+    .features {
+        .items {
+            grid-template-columns: 1fr 1fr 1fr;
+        }
+    }
+}

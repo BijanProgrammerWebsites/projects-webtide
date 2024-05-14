@@ -1,0 +1,6 @@
+$zero: "(width < 430px)";
+$mobile: "(width < 800px)";
+$mobile-and-tablet: "(width < 1000px)";
+$tablet: "(800px <= width < 1000px)";
+$tablet-and-desktop: "(800px <= width)";
+$desktop: "(width >= 1000px)";

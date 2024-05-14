@@ -1,0 +1,5 @@
+@mixin primary-text {
+    background-clip: text;
+    background-image: var(--gradient-primary);
+    color: transparent;
+}

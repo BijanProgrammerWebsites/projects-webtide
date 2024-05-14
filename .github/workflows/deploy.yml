@@ -1,0 +1,11 @@
+name: Deploy
+on:
+    push:
+        branches: [master]
+
+jobs:
+    deploy:
+        uses: BijanProgrammerWebsites/hub/.github/workflows/deploy-nextjs.yml@master
+        with:
+            process-name: webtide
+        secrets: inherit

@@ -1,0 +1,134 @@
+@use "/src/styles/breakpoints";
+@use "/src/styles/colors";
+@use "/src/styles/utils";
+
+.container {
+    @include utils.define-batch(
+        (
+            (--small-offset, 24, 22, 32),
+            (--large-offset, 60, 58, 80),
+            (--shadow-border-radius, 16, 16, 20),
+            (--form-padding-block, 45, 45, 48),
+            (--form-padding-inline, 36, 36, 60),
+            (--form-gap, 24, 24, 34),
+            (--label-inset-block-start, -7, -7, -10),
+            (--label-inset-inline-start, 14, 14, 20),
+            (--label-font-size, 12, 12, 16),
+            (--input-padding-block-start, 13, 12, 18),
+            (--input-padding-inline, 15, 14, 20),
+            (--input-padding-block-end, 12, 10, 15),
+            (--input-border-radius, 12, 12, 16),
+            (--input-font-size, 10, 10, 14),
+            (--button-min-block-size, 28, 28, 40),
+            (--button-font-size, 12, 14, 16)
+        )
+    );
+
+    display: grid;
+    grid-template-columns: [form-start] var(--large-offset) [shadow-start] 1fr [form-end] var(--small-offset) [shadow-end];
+    grid-template-rows: [shadow-start] var(--small-offset) [form-start] 1fr [shadow-end] var(--small-offset) [form-end];
+
+    .shadow {
+        grid-area: shadow;
+
+        min-block-size: 100%;
+        block-size: 0;
+        inline-size: 100%;
+        object-fit: cover;
+
+        border-radius: var(--shadow-border-radius);
+    }
+
+    .form {
+        grid-area: form;
+
+        background-color: hsl(0deg 0% 100% / 100%);
+        box-shadow: var(--box-shadow);
+
+        display: grid;
+        gap: var(--form-gap);
+
+        padding: var(--form-padding-block) var(--form-padding-inline);
+
+        border-radius: var(--border-radius-400);
+
+        label {
+            position: relative;
+
+            .title {
+                background-color: hsl(0deg 0% 100% / 100%);
+                color: hsl(220deg 100% 19% / 100%);
+
+                position: absolute;
+                inset-block-start: var(--label-inset-block-start);
+                inset-inline-start: var(--label-inset-inline-start);
+                z-index: 1;
+
+                padding-inline: 0.4rem;
+
+                font-size: var(--label-font-size);
+                font-weight: 400;
+
+                .asterisk {
+                    @include colors.primary-text;
+                }
+
+                .optional {
+                    color: hsl(0deg 0% 58% / 100%);
+                }
+            }
+
+            input,
+            textarea {
+                inline-size: 100%;
+
+                padding: var(--input-padding-block-start) var(--input-padding-inline) var(--input-padding-block-end);
+
+                border: 1px solid hsl(221deg 74% 91% / 100%);
+                border-radius: var(--input-border-radius);
+
+                font-size: var(--input-font-size);
+                font-weight: 400;
+
+                transition: border-color var(--animation-duration-fast) ease-in-out;
+
+                &::placeholder {
+                    color: hsl(0deg 0% 58% / 100%);
+                }
+
+                &:focus {
+                    border-color: var(--color-primary);
+
+                    outline: none;
+                }
+            }
+
+            textarea {
+                resize: none;
+            }
+        }
+
+        button {
+            background-image: var(--gradient-primary);
+            color: var(--color-white);
+
+            min-block-size: var(--button-min-block-size);
+
+            border-radius: 999rem;
+
+            font-family: var(--font-aeonik);
+            font-size: var(--button-font-size);
+            font-weight: 700;
+        }
+    }
+}
+
+@media #{breakpoints.$mobile} {
+    .form {
+        text-align: center;
+
+        .field {
+            justify-items: center;
+        }
+    }
+}

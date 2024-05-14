@@ -1,0 +1,10 @@
+@use "/src/styles/utils";
+
+.details {
+    @include utils.define-batch([(--details-gap, null, 16, 28)]);
+
+    display: grid;
+    gap: var(--details-gap);
+
+    touch-action: pan-y;
+}

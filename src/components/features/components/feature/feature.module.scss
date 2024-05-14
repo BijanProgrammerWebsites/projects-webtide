@@ -1,0 +1,43 @@
+@use "/src/styles/breakpoints";
+@use "/src/styles/colors";
+@use "/src/styles/utils";
+
+.feature {
+    @include utils.define-batch(
+        (
+            (--feature-gap, 12, 12, 16),
+            (--video-size, 64, 64, 90),
+            (--title-font-size, 14, 14, 20),
+            (--subtitle-font-size, 12, 12, 18)
+        )
+    );
+
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    justify-items: center;
+    gap: var(--feature-gap);
+
+    text-align: center;
+
+    video {
+        block-size: var(--video-size);
+        inline-size: var(--video-size);
+    }
+
+    .title {
+        font-family: var(--font-aeonik);
+        font-size: var(--title-font-size);
+        font-weight: 700;
+    }
+
+    .subtitle {
+        font-size: var(--subtitle-font-size);
+        font-weight: 400;
+    }
+}
+
+@media #{breakpoints.$desktop} {
+    .title {
+        max-inline-size: 20ch;
+    }
+}

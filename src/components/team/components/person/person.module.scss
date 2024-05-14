@@ -1,0 +1,99 @@
+@use "/src/styles/breakpoints";
+@use "/src/styles/colors";
+@use "/src/styles/utils";
+
+.person {
+    @include utils.define-batch(
+        (
+            (--person-gap, 16, 16, 24),
+            (--visuals-block-size, 166, 166, 228),
+            (--visuals-inline-size, 145, 145, 200),
+            (--visuals-small-offset, 12, 12, 16),
+            (--visuals-large-offset, 24, 24, 32),
+            (--visuals-border-radius, 12, 12, 16),
+            (--writings-row-gap, 8, 8, 16),
+            (--writings-column-gap, 4, 4, 6),
+            (--writings-padding-block-start, 22, 22, 38),
+            (--writings-padding-block-end, 22, 22, 24),
+            (--name-font-size, 16, 16, 24),
+            (--role-font-size, 10, 10, 12),
+            (--description-font-size, 12, 12, 14)
+        )
+    );
+
+    display: grid;
+    grid-template-columns: var(--visuals-inline-size) 1fr;
+    gap: var(--person-gap);
+
+    .visuals {
+        display: grid;
+        grid-template-columns:
+            [shadow-start] var(--visuals-small-offset) [image-start] 1fr [shadow-end] var(--visuals-large-offset)
+            [image-end];
+        grid-template-rows:
+            [shadow-start] var(--visuals-small-offset) [image-start] 1fr [shadow-end] var(--visuals-large-offset)
+            [image-end];
+
+        block-size: var(--visuals-block-size);
+        inline-size: 100%;
+
+        img {
+            block-size: 100%;
+            inline-size: 100%;
+            object-fit: cover;
+
+            border-radius: var(--visuals-border-radius);
+
+            &.shadow {
+                grid-area: shadow;
+            }
+
+            &.image {
+                grid-area: image;
+
+                box-shadow: var(--box-shadow);
+
+                object-position: top;
+            }
+        }
+    }
+
+    .writings {
+        display: grid;
+        grid-template-areas: "name role" "description description" "socials socials";
+        grid-template-columns: auto 1fr;
+        align-content: center;
+        align-items: baseline;
+        gap: var(--writings-row-gap) var(--writings-column-gap);
+
+        padding-block: var(--writings-padding-block-start) var(--writings-padding-block-end);
+
+        .name {
+            grid-area: name;
+
+            color: hsl(0deg 0% 20% / 100%);
+
+            font-family: var(--font-aeonik);
+            font-size: var(--name-font-size);
+            font-weight: 700;
+        }
+
+        .role {
+            grid-area: role;
+
+            color: hsl(0deg 0% 47% / 100%);
+
+            font-size: var(--role-font-size);
+        }
+
+        .description {
+            grid-area: description;
+
+            font-size: var(--description-font-size);
+        }
+
+        .socials {
+            grid-area: socials;
+        }
+    }
+}

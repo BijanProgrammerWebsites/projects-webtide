@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 24.1.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" [ <!ENTITY ns_extend "http://ns.adobe.com/Extensibility/1.0/">
+<!ENTITY ns_ai "http://ns.adobe.com/AdobeIllustrator/10.0/">
+<!ENTITY ns_graphs "http://ns.adobe.com/Graphs/1.0/">
+<!ENTITY ns_vars "http://ns.adobe.com/Variables/1.0/">
+<!ENTITY ns_imrep "http://ns.adobe.com/ImageReplacement/1.0/">
+<!ENTITY ns_sfw "http://ns.adobe.com/SaveForWeb/1.0/">
+<!ENTITY ns_custom "http://ns.adobe.com/GenericCustomNamespace/1.0/">
+<!ENTITY ns_adobe_xpath "http://ns.adobe.com/XPath/1.0/">
+]>
+<svg
+    version="1.1"
+    id="Layer_1"
+    xmlns:x="&ns_extend;"
+    xmlns:i="&ns_ai;"
+    xmlns:graph="&ns_graphs;"
+    xmlns="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    x="0px"
+    y="0px"
+    viewBox="0 0 425 589"
+    style="enable-background: new 0 0 425 589"
+    xml:space="preserve"
+>
+    <style type="text/css">
+        .st0 {
+            clip-path: url(#SVGID_2_);
+        }
+        .st1 {
+            fill: url(#SVGID_3_);
+        }
+        .st2 {
+            fill: #ffffff;
+            fill-opacity: 5e-2;
+        }
+    </style>
+    <metadata>
+        <sfw xmlns="&ns_sfw;">
+            <slices></slices>
+            <sliceSourceBounds
+                bottomLeftOrigin="true"
+                height="679.1"
+                width="1466.7"
+                x="-594"
+                y="-46.1"
+            ></sliceSourceBounds>
+        </sfw>
+    </metadata>
+    <g>
+        <defs>
+            <rect id="SVGID_1_" width="425" height="589" />
+        </defs>
+        <clipPath id="SVGID_2_">
+            <use xlink:href="#SVGID_1_" style="overflow: visible" />
+        </clipPath>
+        <g class="st0">
+            <linearGradient
+                id="SVGID_3_"
+                gradientUnits="userSpaceOnUse"
+                x1="-202.3881"
+                y1="287.0748"
+                x2="498.8194"
+                y2="271.5162"
+                gradientTransform="matrix(1 0 0 -1 0 590)"
+            >
+                <stop offset="0" style="stop-color: #0067e0" />
+                <stop offset="1" style="stop-color: #0074ff" />
+            </linearGradient>
+            <rect x="-147" class="st1" width="572" height="621" />
+            <path
+                class="st2"
+                d="M141.6,458.5C15.3,482.8-169.1,419-232,395c-10.5-4-22,3.8-22,15v209.3c0,8.7,7,15.7,15.7,15.7H698
+			c8.7,0,15.7-7,15.7-15.7V270.2c0-7.9-5.8-14.6-13.7-15.4c-35.8-3.7-133.7-11.7-200.6,1.5C353,285.3,288,430.3,141.6,458.5z"
+            />
+            <path
+                class="st2"
+                d="M5.7,316.9c-199.3,43.6-494-77.2-577.1-114c-10.6-4.7-22.6,3.1-22.6,14.7v387.8c0,8.7,7,15.7,15.7,15.7H857
+			c8.7,0,15.7-7,15.7-15.7V-17.8c0-7.8-5.8-14.4-13.5-15.4c-46.8-5.7-205-22.2-311.4,1.8C326,18.5,227.6,268.3,5.7,316.9z"
+            />
+        </g>
+    </g>
+</svg>

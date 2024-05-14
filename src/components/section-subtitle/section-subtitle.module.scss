@@ -1,0 +1,26 @@
+@use "/src/styles/breakpoints";
+@use "/src/styles/colors";
+@use "/src/styles/utils";
+
+.subtitle {
+    @include utils.define-batch([(--subtitle-font-size, 12, 12, 18)]);
+
+    grid-area: subtitle;
+
+    font-family: Lato, system-ui;
+    font-size: var(--subtitle-font-size);
+}
+
+@media #{breakpoints.$mobile} {
+    .subtitle {
+        margin-inline: auto;
+
+        text-align: center;
+    }
+}
+
+@media #{breakpoints.$desktop} {
+    .subtitle {
+        line-height: 1.33;
+    }
+}

@@ -1,0 +1,140 @@
+@use "/src/styles/breakpoints";
+@use "/src/styles/colors";
+@use "/src/styles/utils";
+
+.slider {
+    @include utils.define-batch(
+        (
+            (--slider-min-block-size, 477, 380, 544),
+            (--shadow-border-radius, 16, 16, 20),
+            (--shadow-offset, 20, 16, 24),
+            (--items-offset, 40, 32, 45),
+            (--inactive-block-offset, 138, 110, 157),
+            (--inactive-inline-offset, -12, -9, -12),
+            (--bullets-offset, 18, 14, 20),
+            (--bullet-size, 8, 6, 9),
+            (--bullet-active-size, 50, 40, 58)
+        )
+    );
+
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+
+    display: grid;
+    grid-template-columns: [shadow-start] var(--items-offset) [items-start] 1fr [shadow-end] var(--shadow-offset) [items-end];
+    grid-template-rows: [shadow-start] 1fr [items-start] auto [items-end] 1fr [shadow-end];
+
+    min-block-size: var(--slider-min-block-size);
+
+    .shadow {
+        grid-area: shadow;
+
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+
+        block-size: 100%;
+        inline-size: 100%;
+        object-fit: cover;
+
+        border-radius: var(--shadow-border-radius);
+    }
+
+    .items {
+        grid-area: items;
+
+        display: grid;
+
+        block-size: 100%;
+        inline-size: 100%;
+
+        > * {
+            grid-area: 1 / 1 / -1 / -1;
+
+            transform-origin: left;
+
+            transition: var(--animation-duration-normal) var(--ease-natural);
+            transition-property: opacity, translate, scale;
+        }
+
+        > :not(.previous-hidden, .previous-visible, .active, .next-visible, .next-hidden) {
+            display: none;
+        }
+
+        > :not(.active) {
+            position: relative;
+            z-index: -1;
+
+            user-select: none;
+
+            scale: 85%;
+        }
+
+        .previous-hidden,
+        .next-hidden {
+            opacity: 0;
+
+            pointer-events: none;
+        }
+
+        .previous-visible,
+        .next-visible {
+            opacity: 0.5;
+
+            cursor: pointer;
+        }
+
+        .previous-hidden {
+            translate: var(--inactive-inline-offset) calc(-1 * var(--inactive-block-offset) - 100%);
+        }
+
+        .previous-visible {
+            translate: var(--inactive-inline-offset) calc(-1 * var(--inactive-block-offset));
+        }
+
+        .next-visible {
+            translate: var(--inactive-inline-offset) calc(1 * var(--inactive-block-offset));
+        }
+
+        .next-hidden {
+            translate: var(--inactive-inline-offset) calc(1 * var(--inactive-block-offset) + 100%);
+        }
+    }
+
+    .bullets {
+        grid-area: 1 / 1 / -1 / -1;
+
+        position: absolute;
+        inset-block-start: 50%;
+        inset-inline-start: calc(0.5 * var(--bullets-offset));
+
+        display: grid;
+        gap: 0.4rem;
+
+        transform: translate(50%, -50%);
+
+        .bullet {
+            background-color: var(--color-white);
+            opacity: 0.5;
+
+            block-size: var(--bullet-size);
+            inline-size: var(--bullet-size);
+
+            border-radius: 999rem;
+
+            transition: var(--animation-duration-normal) var(--ease-natural);
+            transition-property: block-size, opacity;
+
+            &.active {
+                opacity: 1;
+
+                block-size: var(--bullet-active-size);
+            }
+
+            &:not(.active) {
+                cursor: pointer;
+            }
+        }
+    }
+}

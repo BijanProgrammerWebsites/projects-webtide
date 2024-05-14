@@ -1,0 +1,43 @@
+@use "/src/styles/breakpoints";
+@use "/src/styles/colors";
+@use "/src/styles/utils";
+
+.socials {
+    @include utils.define-batch(((--socials-gap, 12, 12, 16), (--social-size, 18, 18, 24)));
+
+    grid-area: socials;
+
+    display: flex;
+    gap: var(--socials-gap);
+
+    a {
+        color: hsl(0deg 0% 27% / 100%);
+
+        display: grid;
+        place-content: center;
+
+        block-size: var(--social-size);
+        inline-size: var(--social-size);
+
+        border-radius: 999rem;
+
+        transition: var(--animation-duration-fast) ease-in-out;
+        transition-property: color, transform;
+
+        svg {
+            block-size: 100%;
+            inline-size: 100%;
+            object-fit: cover;
+        }
+
+        &:hover {
+            color: hsl(213deg 63% 43% / 100%);
+
+            transform: scale(1.18);
+        }
+    }
+
+    &.small {
+        @include utils.define-batch(((--socials-gap, 10, 10, 16), (--social-size, 12.5, 12.5, 20)));
+    }
+}

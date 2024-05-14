@@ -1,0 +1,102 @@
+@use "/src/styles/breakpoints";
+@use "/src/styles/colors";
+@use "/src/styles/utils";
+
+.review {
+    @include utils.define-batch(
+        (
+            (--review-min-block-size, 186, 148, 212),
+            (--review-border-radius, 12, 12, 16),
+            (--quote-padding, 24, 20, 28),
+            (--quote-font-size, 12, 10, 14),
+            (--cite-gutter, 14, 12, 16),
+            (--cite-column-gap, 10, 8, 12),
+            (--image-size, 32, 24, 36),
+            (--name-font-size, 10, 10, 12),
+            (--company-font-size, 8, 8, 10),
+            (--watermark-block-size, 98, 78, 112),
+            (--watermark-inline-size, 121, 96, 138),
+            (--watermark-block-gutter, 7, 6, 8),
+            (--watermark-inline-gutter, 5, 4, 6)
+        )
+    );
+
+    background-color: var(--color-white);
+    box-shadow: var(--box-shadow);
+
+    position: relative;
+    isolation: isolate;
+
+    display: grid;
+    place-content: center;
+
+    min-block-size: var(--review-min-block-size);
+
+    border-radius: var(--review-border-radius);
+
+    .quote {
+        padding: var(--quote-padding);
+
+        font-size: var(--quote-font-size);
+
+        text-align: center;
+    }
+
+    .cite {
+        position: absolute;
+        inset-block-end: var(--cite-gutter);
+        inset-inline-start: var(--cite-gutter);
+
+        display: grid;
+        grid-template-areas: "image name" "image company";
+        align-items: center;
+        column-gap: var(--cite-column-gap);
+
+        .image {
+            grid-area: image;
+
+            block-size: var(--image-size);
+            inline-size: var(--image-size);
+            object-fit: cover;
+
+            border-radius: 999rem;
+        }
+
+        .name {
+            grid-area: name;
+
+            color: hsl(0deg 0% 20% / 100%);
+
+            font-family: var(--font-aeonik);
+            font-size: var(--name-font-size);
+            font-weight: 700;
+        }
+
+        .company {
+            grid-area: company;
+
+            color: hsl(0deg 0% 58% / 100%);
+
+            font-family: var(--font-aeonik);
+            font-size: var(--company-font-size);
+            font-weight: 500;
+        }
+    }
+
+    .watermark {
+        position: absolute;
+
+        block-size: var(--watermark-block-size);
+        inline-size: var(--watermark-inline-size);
+
+        &.start {
+            inset-block-start: var(--watermark-block-gutter);
+            inset-inline-start: var(--watermark-inline-gutter);
+        }
+
+        &.end {
+            inset-block-end: var(--watermark-block-gutter);
+            inset-inline-end: var(--watermark-inline-gutter);
+        }
+    }
+}

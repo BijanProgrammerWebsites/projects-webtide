@@ -1,0 +1,64 @@
+@use "/src/styles/breakpoints";
+@use "/src/styles/colors";
+@use "/src/styles/utils";
+
+.title {
+    @include utils.define-batch(
+        (
+            (--normal-font-size, 22, 24, 36),
+            (--highlight-margin-inline-start, null, 43, 60),
+            (--highlight-font-size, 40, 56, 80)
+        )
+    );
+
+    grid-area: title;
+
+    display: grid;
+
+    font-family: var(--font-aeonik);
+    font-weight: 700;
+
+    .normal {
+        color: var(--color-gray-20);
+
+        font-size: var(--normal-font-size);
+    }
+
+    .highlight {
+        @include colors.primary-text;
+
+        position: relative;
+
+        inline-size: max-content;
+
+        margin-block-start: -0.2rem;
+
+        font-size: var(--highlight-font-size);
+
+        .bling {
+            position: absolute;
+            inset-block-start: 0;
+            inset-inline-end: 0;
+
+            inline-size: var(--bling-size);
+
+            transform: translate(var(--bling-inline-offset), var(--bling-block-offset));
+        }
+    }
+}
+
+@media #{breakpoints.$mobile} {
+    .title {
+        justify-items: center;
+
+        text-align: center;
+    }
+}
+
+@media #{breakpoints.$tablet-and-desktop} {
+    .title {
+        .highlight {
+            margin-inline-start: var(--highlight-margin-inline-start);
+        }
+    }
+}

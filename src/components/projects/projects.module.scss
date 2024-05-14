@@ -1,0 +1,72 @@
+@use "/src/styles/breakpoints";
+@use "/src/styles/colors";
+@use "/src/styles/utils";
+
+.projects {
+    @include utils.define-batch(
+        (
+            (--projects-margin-block-start, 132, 180, 220),
+            (--projects-margin-block-end, 140, 180, 220),
+            (--projects-row-gap, null, 60, 80),
+            (--bling-size, 32, 52, 90),
+            (--bling-block-offset, -4, -8, -28),
+            (--bling-inline-offset, 20, 32, 56),
+            (--details-gap, null, 16, 28)
+        )
+    );
+
+    @include utils.section-margin(var(--projects-margin-block-start), var(--projects-margin-block-end));
+
+    .spiral {
+        display: none;
+    }
+}
+
+@media #{breakpoints.$mobile} {
+    .projects {
+        .title {
+            margin-block-end: 1.6rem;
+        }
+
+        .subtitle {
+            margin-block-end: 6rem;
+        }
+
+        .screenshots {
+            margin-block-end: 4rem;
+        }
+    }
+}
+
+@media #{breakpoints.$tablet-and-desktop} {
+    .projects {
+        display: grid;
+        grid-template-areas: "title subtitle" "details screenshots";
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+        column-gap: 2.4rem;
+        row-gap: var(--projects-row-gap);
+
+        .details {
+            grid-area: details;
+        }
+
+        .screenshots {
+            grid-area: screenshots;
+        }
+    }
+}
+
+@media #{breakpoints.$desktop} {
+    .projects {
+        position: relative;
+
+        .spiral {
+            position: absolute;
+            inset-block-start: 16rem;
+            inset-inline-start: -1.4rem;
+
+            display: unset;
+        }
+    }
+}

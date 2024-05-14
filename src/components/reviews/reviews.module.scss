@@ -1,0 +1,54 @@
+@use "/src/styles/breakpoints";
+@use "/src/styles/colors";
+@use "/src/styles/utils";
+
+.reviews {
+    @include utils.define-batch(
+        (
+            (--reviews-gap, 60, 76, 104),
+            (--reviews-margin-block-start, 140, 180, 220),
+            (--reviews-margin-block-end, 120, 180, 220),
+            (--bling-size, 40, 40, 50),
+            (--bling-block-offset, -12, -10, -10),
+            (--bling-inline-offset, 24, 26, 34),
+            (--slider-gap, 40, 24, 24)
+        )
+    );
+
+    @include utils.section-margin(var(--reviews-margin-block-start), var(--reviews-margin-block-end));
+
+    .title {
+        margin-block-end: 1.6rem;
+    }
+}
+
+@media #{breakpoints.$mobile} {
+    .reviews {
+        grid-template-columns: 1fr;
+
+        .subtitle {
+            margin-block-end: 6rem;
+        }
+    }
+}
+
+@media #{breakpoints.$tablet-and-desktop} {
+    .reviews {
+        display: grid;
+        grid-template-areas: "slider title" "slider subtitle";
+        grid-template-columns: 1fr 50%;
+        column-gap: var(--reviews-gap);
+
+        .title {
+            align-self: end;
+        }
+
+        .subtitle {
+            align-self: start;
+        }
+
+        .slider {
+            grid-area: slider;
+        }
+    }
+}

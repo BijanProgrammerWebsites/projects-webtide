@@ -1,0 +1,54 @@
+@use "/src/styles/breakpoints";
+@use "/src/styles/colors";
+@use "/src/styles/utils";
+
+.team {
+    @include utils.define-batch(
+        (
+            (--team-margin-block-start, 120, 180, 220),
+            (--team-margin-block-end, 60, 120, 140),
+            (--bling-size, 21, 26, 32),
+            (--bling-block-offset, 2, 0, 2),
+            (--bling-inline-offset, 14, 18, 20),
+            (--people-margin-block-start, 60, 60, 80),
+            (--people-gap, 40, 24, 24)
+        )
+    );
+
+    @include utils.section-margin(var(--team-margin-block-start), var(--team-margin-block-end));
+
+    .people {
+        display: grid;
+        gap: var(--people-gap);
+
+        margin-block-start: var(--people-margin-block-start);
+    }
+}
+
+@media #{breakpoints.$mobile} {
+    .team {
+        .title {
+            margin-block-end: 1.6rem;
+        }
+
+        .subtitle {
+            margin-block-end: 6rem;
+        }
+    }
+}
+
+@media #{breakpoints.$tablet-and-desktop} {
+    .team {
+        display: grid;
+        grid-template-areas: "title subtitle" "people people";
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+        column-gap: 2.4rem;
+
+        .people {
+            grid-area: people;
+
+            justify-items: center;
+        }
+    }
+}

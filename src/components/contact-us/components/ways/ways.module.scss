@@ -1,0 +1,46 @@
+@use "/src/styles/breakpoints";
+@use "/src/styles/colors";
+@use "/src/styles/utils";
+
+.ways {
+    @include utils.define-batch(
+        (
+            (--ways-gap, 40, 30, 45),
+            (--way-gap, 18, 18, 24),
+            (--title-font-size, 16, 16, 24),
+            (--content-font-size, 12, 14, 18)
+        )
+    );
+
+    display: grid;
+    gap: var(--ways-gap);
+
+    .way {
+        display: grid;
+        gap: var(--way-gap);
+
+        .title {
+            color: hsl(0deg 0% 20% / 100%);
+
+            font-size: var(--title-font-size);
+            font-weight: 400;
+        }
+
+        .content {
+            color: hsl(0deg 0% 47% / 100%);
+
+            font-size: var(--content-font-size);
+            font-weight: 400;
+        }
+    }
+}
+
+@media #{breakpoints.$mobile} {
+    .ways {
+        text-align: center;
+
+        .way {
+            justify-items: center;
+        }
+    }
+}

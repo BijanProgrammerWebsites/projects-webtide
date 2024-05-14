@@ -1,0 +1,185 @@
+@use "/src/styles/breakpoints";
+@use "/src/styles/utils";
+
+.footer {
+    @include utils.define-batch(
+        (
+            (--footer-margin-block-start, 80, 120, 140),
+            (--footer-row-gap, 24, 14, 24),
+            (--footer-column-gap, 24, 60, 100),
+            (--footer-padding-block, 24, 16, 24),
+            (--footer-padding-inline-start, 16, 48, 76),
+            (--footer-padding-inline-end, 16, 28, 58),
+            (--footer-border-radius, 15, 15, 24),
+            (--heading-gap, 16, 10, 16),
+            (--title-gap, 12, 10, 16),
+            (--title-font-size, 16, 16, 24),
+            (--logo-block-size, 25, 25, 41),
+            (--logo-inline-size, 20, 17, 28),
+            (--subtitle-font-size, 12, 12, 18),
+            (--list-gap, 16, 8, 13),
+            (--list-title-font-size, 12, 12, 18),
+            (--list-item-font-size, 12, 12, 18),
+            (--copyright-font-size, 12, 12, 18)
+        )
+    );
+
+    background-color: var(--color-white);
+    color: hsl(0deg 0% 27% / 100%);
+    box-shadow: var(--box-shadow);
+
+    display: grid;
+    align-content: start;
+    gap: var(--footer-row-gap) var(--footer-column-gap);
+
+    margin-block-start: var(--footer-margin-block-end);
+    padding-block: var(--footer-padding-block);
+    padding-inline: var(--footer-padding-inline-start) var(--footer-padding-inline-end);
+
+    border-radius: var(--footer-border-radius);
+
+    .heading {
+        display: grid;
+        align-content: start;
+        gap: var(--heading-gap);
+
+        .title {
+            display: flex;
+            align-items: flex-end;
+            gap: var(--title-gap);
+
+            font-family: var(--font-aeonik);
+            font-size: var(--title-font-size);
+            font-weight: 700;
+
+            .logo {
+                block-size: auto;
+                inline-size: var(--logo-inline-size);
+            }
+        }
+
+        .subtitle {
+            max-inline-size: 48ch;
+
+            font-size: var(--subtitle-font-size);
+            font-weight: 400;
+        }
+    }
+
+    .links,
+    .contact {
+        .title {
+            font-size: var(--list-title-font-size);
+            font-weight: 700;
+        }
+
+        > ul {
+            font-size: var(--list-item-font-size);
+            font-weight: 400;
+        }
+    }
+
+    .divider {
+        background-image: var(--gradient-primary);
+        opacity: 0.1;
+
+        block-size: 1px;
+        inline-size: 100%;
+    }
+
+    .copyright {
+        font-family: var(--font-aeonik);
+        font-size: var(--copyright-font-size);
+        font-weight: 400;
+    }
+
+    .socials {
+        margin-block-start: -0.8rem;
+    }
+}
+
+@media #{breakpoints.$mobile} {
+    .footer {
+        justify-items: center;
+
+        text-align: center;
+
+        .heading {
+            .title {
+                justify-content: center;
+            }
+        }
+
+        .links,
+        .contact {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            align-items: baseline;
+            gap: 0.5rem;
+
+            inline-size: 100%;
+
+            > ul {
+                display: flex;
+                align-items: baseline;
+                justify-content: flex-end;
+                gap: var(--list-gap);
+            }
+        }
+    }
+}
+
+@media #{breakpoints.$tablet-and-desktop} {
+    .footer {
+        grid-template-areas: "heading links contact" "divider divider divider" "copyright copyright socials";
+        grid-template-columns: 1fr auto auto;
+
+        .heading {
+            grid-area: heading;
+        }
+
+        .links,
+        .contact {
+            display: grid;
+            align-content: start;
+            gap: var(--list-gap);
+
+            > ul {
+                display: grid;
+                gap: var(--list-gap);
+            }
+        }
+
+        .links {
+            grid-area: links;
+        }
+
+        .contact {
+            grid-area: contact;
+        }
+
+        .divider {
+            grid-area: divider;
+        }
+
+        .copyright {
+            grid-area: copyright;
+        }
+
+        .socials {
+            grid-area: socials;
+
+            margin: auto;
+        }
+    }
+}
+
+@media #{breakpoints.$desktop} {
+    .footer {
+        .heading {
+            .subtitle {
+                max-inline-size: 50ch;
+            }
+        }
+    }
+}
